@@ -18,4 +18,19 @@ class Manager extends TestCase{
         new \App\Database\Manager();
     }
 
+    /**
+     * @test
+     * @doesNotPerformAssertions
+     */
+    public function connectionToDatabase(){
+        new \App\Database\Manager(
+            database : 'db',
+            port : 3306,
+            user : 'fizzbuzz',
+            password : 'fizzbuzz',
+            host : 'db'
+
+        );
+    }
+
 }
