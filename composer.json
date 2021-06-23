@@ -1,0 +1,6 @@
+{
+    "name": "thomas-v/lbcoin",
+    "description": "Write a simple fizz-buzz REST server",
+    "type": "project",
+    "require": {}
+}
