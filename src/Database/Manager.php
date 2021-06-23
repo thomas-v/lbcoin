@@ -17,4 +17,8 @@ class Manager {
     ){
         $this->dbh = new PDO('mysql:host='.$this->host.';port='.$this->port.';dbname='.$this->database, $this->user, $this->password);
     }
+
+    public function getDbh():PDO{
+        return $this->dbh;
+    }
 }
