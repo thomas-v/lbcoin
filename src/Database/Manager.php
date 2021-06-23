@@ -21,4 +21,8 @@ class Manager {
     public function getDbh():PDO{
         return $this->dbh;
     }
+
+    public function close():void{
+        $this->dbh = null;
+    }
 }

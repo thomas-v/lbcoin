@@ -75,7 +75,7 @@ class Manager extends TestCase{
             password : 'fizzbuzz',
             host : 'db'
         );
-        $dbManager->destroy();
+        $dbManager->close();
     }
 
 }
