@@ -13,4 +13,14 @@ class HydratorTest extends TestCase{
     public function checkIfConstructorExists(){
         new \App\Hydrator();
     }
+
+    /** 
+     * @test 
+     * @doesNotPerformAssertions
+     * */
+    public function checkConstructorWithParam(){
+        new \App\Hydrator([
+            'testKey' => 'testValue'
+        ]);
+    }
 }
