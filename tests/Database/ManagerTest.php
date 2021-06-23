@@ -2,6 +2,7 @@
 
 namespace Tests\Database;
 
+use PDOException;
 use PHPUnit\Framework\TestCase;
 
 class ConnectorInterfaceTest {
@@ -22,14 +23,28 @@ class Manager extends TestCase{
      * @test
      * @doesNotPerformAssertions
      */
-    public function connectionToDatabase(){
+    public function callConstructorWithParameters(){
         new \App\Database\Manager(
-            database : 'db',
+            database : 'fizzbuzz',
             port : 3306,
             user : 'fizzbuzz',
             password : 'fizzbuzz',
             host : 'db'
 
+        );
+    }
+
+    /**
+     * @test
+     */
+    public function connectionToDatabaseFailed(){
+        $this->expectException(PDOException::class);
+        new \App\Database\Manager(
+            database : 'db',
+            port : 3306,
+            user : 'fizz',
+            password : 'fizz',
+            host : 'db'
         );
     }
 
