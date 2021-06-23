@@ -3,6 +3,7 @@
 namespace App\Database;
 
 use PDO;
+use PDOException;
 
 class Manager {
 
@@ -15,7 +16,12 @@ class Manager {
         private string $password,
         private string $database
     ){
-        $this->dbh = new PDO('mysql:host='.$this->host.';port='.$this->port.';dbname='.$this->database, $this->user, $this->password);
+        try {
+            $this->dbh = new PDO('mysql:host='.$this->host.';port='.$this->port.';dbname='.$this->database, $this->user, $this->password);
+        } catch (PDOException $e){
+            throw new \RuntimeException('Echec de la connection à la BDD');
+        }
+        
     }
 
     public function getDbh():PDO{
