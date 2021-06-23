@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Database;
+namespace Tests\Database;
 
 use PHPUnit\Framework\TestCase;
 
 class Manager extends TestCase{
-
+    
 }
