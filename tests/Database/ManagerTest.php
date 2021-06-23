@@ -6,11 +6,12 @@ use PHPUnit\Framework\TestCase;
 
 class Manager extends TestCase{
 
-    /** 
-     * @test 
-     * @doesNotPerformAssertions
-     * */
-    public function checkIfConstructorExists(){
-        new \App\Database\Manager();
+    /**
+     * @test
+     */
+    public function callConstructorWithoutParameter(){
+        $this->expectError();
+        new \App\Database\Manager(new \stdClass());
     }
+
 }
