@@ -63,4 +63,19 @@ class Manager extends TestCase{
         $dbManager->getDbh();
     }
 
+    /**
+     * @test
+     * @doesNotPerformAssertions
+     */
+    public function destroyPdoInstance(){
+        $dbManager = new \App\Database\Manager(
+            database : 'fizzbuzz',
+            port : 3306,
+            user : 'fizzbuzz',
+            password : 'fizzbuzz',
+            host : 'db'
+        );
+        $dbManager->destroy();
+    }
+
 }
