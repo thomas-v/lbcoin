@@ -14,5 +14,7 @@ class Manager {
         private string $user,
         private string $password,
         private string $database
-    ){}
+    ){
+        $this->dbh = new PDO('mysql:host='.$this->host.';port='.$this->port.';dbname='.$this->database, $this->user, $this->password);
+    }
 }
