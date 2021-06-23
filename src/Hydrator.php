@@ -2,11 +2,18 @@
 
 namespace App;
 
-class Hydrator {
-    public function hydrate(Array $datas){
-        foreach($datas as $key => $value){
-            $method = 'set'.ucfirst($key);
-            echo $method;
-        }
+trait Hydrator
+{
+  public function hydrate($data)
+  {
+    foreach ($data as $key => $value)
+    {
+      $method = 'set'.ucfirst($key);
+      
+      if (is_callable([$this, $method]))
+      {
+        $this->$method($value);
+      }
     }
+  }
 }
