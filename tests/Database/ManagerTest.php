@@ -48,4 +48,19 @@ class Manager extends TestCase{
         );
     }
 
+    /**
+     * @test
+     * @doesNotPerformAssertions
+     */
+    public function getDbh(){
+        $dbManager = new \App\Database\Manager(
+            database : 'fizzbuzz',
+            port : 3306,
+            user : 'fizzbuzz',
+            password : 'fizzbuzz',
+            host : 'db'
+        );
+        $dbManager->getDbh();
+    }
+
 }
