@@ -20,7 +20,20 @@ class HydratorTest extends TestCase{
      * */
     public function checkIfHydrateFunctionExists(){
         $hydrator = new \App\Hydrator();
-        $hydrator->hydrate();
+        $hydrator->hydrate([
+            'test' => null
+        ]);
+    }
 
+    /** 
+     * @test 
+     * */
+    public function showSetTestIfParamIsTestKey(){
+        $this->expectOutputString('setTest');
+
+        $hydrator = new \App\Hydrator();
+        $hydrator->hydrate([
+            'test' => null
+        ]);
     }
 }
