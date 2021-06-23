@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Database;
+namespace Tests\Database;
 
 use PHPUnit\Framework\TestCase;
 
@@ -11,6 +11,6 @@ class Manager extends TestCase{
      * @doesNotPerformAssertions
      * */
     public function checkIfConstructorExists(){
-        new App\Database\Manager();
+        new \App\Database\Manager();
     }
 }
