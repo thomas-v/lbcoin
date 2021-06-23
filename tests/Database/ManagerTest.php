@@ -4,6 +4,10 @@ namespace Tests\Database;
 
 use PHPUnit\Framework\TestCase;
 
+class ConnectorInterfaceTest {
+
+}
+
 class Manager extends TestCase{
 
     /**
@@ -11,7 +15,7 @@ class Manager extends TestCase{
      */
     public function callConstructorWithoutParameter(){
         $this->expectError();
-        new \App\Database\Manager(new \stdClass());
+        new \App\Database\Manager();
     }
 
 }
