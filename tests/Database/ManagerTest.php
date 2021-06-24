@@ -4,6 +4,7 @@ namespace Tests\Database;
 
 use PDOException;
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
 class ConnectorInterfaceTest {
 
@@ -38,7 +39,7 @@ class Manager extends TestCase{
      * @test
      */
     public function connectionToDatabaseFailed(){
-        $this->expectException(PDOException::class);
+        $this->expectException(RuntimeException::class);
         new \App\Database\Manager(
             database : 'db',
             port : 3306,
