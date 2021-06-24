@@ -41,4 +41,19 @@ class ManagerTest extends TestCase {
         );
         $treatment->getInt1();
     }
+
+    /**
+     * @test
+     * @doesNotPerformAssertions
+     */
+    public function callGetInt2Property(){
+        $treatment = new \App\Treatment\Manager(
+            int1 : 3,
+            int2 : 5,
+            limit : 100,
+            str1 : 'fizz',
+            str2 : 'buzz'
+        );
+        $treatment->getInt2();
+    }
 }
