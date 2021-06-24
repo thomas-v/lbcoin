@@ -14,4 +14,8 @@ class Manager {
     public function getInt1():int {
         return $this->int1;
     }
+
+    public function getInt2():int {
+        return $this->int2;
+    }
 }
