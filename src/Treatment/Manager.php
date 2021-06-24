@@ -10,4 +10,8 @@ class Manager {
         private string $str1,
         private string $str2
     ){}
+
+    public function getInt1():int {
+        return $this->int1;
+    }
 }
