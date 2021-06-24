@@ -26,4 +26,8 @@ class Manager {
     public function getStr1():string {
         return $this->str1;
     }
+
+    public function getStr2():string {
+        return $this->str2;
+    }
 }
