@@ -11,6 +11,6 @@ class ManagerTest extends TestCase {
      * @doesNotPerformAssertions
      */
     public function callConstructor(){
-        new \App\Conf\ManagerManager();
+        new \App\Conf\Manager();
     }
 }
