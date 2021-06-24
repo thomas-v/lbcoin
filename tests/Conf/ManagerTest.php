@@ -32,4 +32,13 @@ class ManagerTest extends TestCase {
         $confManager = new \App\Conf\Manager();
         $confManager->getConf(confName : 'unknown');
     }
+
+    /**
+     * @test
+     * @doesNotPerformAssertions
+     */
+    public function getConfsByKey(){
+        $confManager = new \App\Conf\Manager();
+        $confManager->getConf(confName : 'database');
+    }
 }
