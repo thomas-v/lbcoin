@@ -7,9 +7,9 @@ use PHPUnit\Framework\TestCase;
 class ManagerTest extends TestCase {
     /**
      * @test
-     * @doesNotPerformAssertions
      */
     public function callConstructorWithoutParameters(){
+        $this->expectError();
         new \App\Treatment\Manager();
     }
 
