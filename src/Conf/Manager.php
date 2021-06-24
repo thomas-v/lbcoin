@@ -25,12 +25,13 @@ class Manager {
     }
 
     public function getConf(string $confName):Array{
-        $this->confExctractor($confName);
+        return $this->confExctractor($confName);
     }
 
     private function confExctractor(string $confName):Array{
         if(!in_array($confName.'.json', $this->getConfFiles())){
             throw new \RuntimeException('Configuration '.$confName.' inconnue');
         }
+        return json_decode(file_get_contents(self::CONF_DIRECTORY.$confName.'.json'), true)[$confName];
     }
 }
