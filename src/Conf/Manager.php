@@ -23,4 +23,14 @@ class Manager {
     public function setConfFiles(Array $array):void {
         $this->confFiles = $array;
     }
+
+    public function getConf(string $confName):Array{
+        $this->confExctractor($confName);
+    }
+
+    private function confExctractor(string $confName):Array{
+        if(!in_array($confName.'.json', $this->getConfFiles())){
+            throw new \RuntimeException('Configuration '.$confName.' inconnue');
+        }
+    }
 }
