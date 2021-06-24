@@ -3,6 +3,7 @@
 namespace Tests\Conf;
 
 use PHPUnit\Framework\TestCase;
+use RuntimeException;
 
 class ManagerTest extends TestCase {
 
@@ -21,5 +22,14 @@ class ManagerTest extends TestCase {
     public function getJsonConfFiles(){
         $confManager = new \App\Conf\Manager();
         $confManager->getConfFiles();
+    }
+
+    /**
+     * @test
+     */
+    public function getConfsByKeyUnknown(){
+        $this->expectException(RuntimeException::class);
+        $confManager = new \App\Conf\Manager();
+        $confManager->getConf(confName : 'unknown');
     }
 }
