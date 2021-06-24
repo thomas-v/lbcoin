@@ -18,4 +18,8 @@ class Manager {
     public function getInt2():int {
         return $this->int2;
     }
+
+    public function getLimit():int {
+        return $this->limit;
+    }
 }
