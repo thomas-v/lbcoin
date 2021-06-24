@@ -20,6 +20,6 @@ class ManagerTest extends TestCase {
      */
     public function getJsonConfFiles(){
         $confManager = new \App\Conf\Manager();
-        $confManager->getJsonConfFiles();
+        $confManager->getConfFiles();
     }
 }
