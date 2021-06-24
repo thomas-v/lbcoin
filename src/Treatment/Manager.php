@@ -22,4 +22,8 @@ class Manager {
     public function getLimit():int {
         return $this->limit;
     }
+
+    public function getStr1():string {
+        return $this->str1;
+    }
 }
