@@ -27,7 +27,7 @@ class ManagerTest extends TestCase {
     /**
      * @test
      */
-    public function getConfsByKeyUnknown(){
+    public function getConfByKeyUnknown(){
         $this->expectException(RuntimeException::class);
         $confManager = new \App\Conf\Manager();
         $confManager->getConf(confName : 'unknown');
@@ -37,7 +37,7 @@ class ManagerTest extends TestCase {
      * @test
      * @doesNotPerformAssertions
      */
-    public function getConfsByKey(){
+    public function getConfByKey(){
         $confManager = new \App\Conf\Manager();
         $confManager->getConf(confName : 'database');
     }
