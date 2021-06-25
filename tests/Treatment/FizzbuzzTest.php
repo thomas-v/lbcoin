@@ -9,14 +9,14 @@ class FizzbuzzTest extends TestCase {
     /**
      * @test
      */
-    public function returnStr1ForInt1(){
+    public function returnStringOfListNum1ToLimit(){
         $treatmentManager = new Manager(
             int1 : 3,
             int2 : 5,
-            limit : 100,
+            limit : 16,
             str1 : 'fizz',
             str2 : 'buzz'
         );
-        $this->assertEquals('fizz', $treatmentManager->genericFizzBuzz());
+        $this->assertEquals('12345678910111213141516', $treatmentManager->genericFizzBuzz());
     }
 }
