@@ -49,7 +49,5 @@ $statsMiddleware = function ($request, $response, $next) {
         error_log($e);
     }
 
-    //INSERT INTO fizzbuzz.utilisateur (id, nom) VALUES (11, 'Thomas');
-
     return $response;
 };
