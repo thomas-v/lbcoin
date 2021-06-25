@@ -6,7 +6,7 @@ use OpenApi\Annotations as OA;
  * @OA\Info(title="Fizz-buzz REST server", version="0.1")
  * @OA\Server(
  *  url="http://127.0.0.1:8080/v1",
- *  description="Simple fizz-buzz REST server",
+ *  description="Simple fizz-buzz REST server"
  * )
  */
 
