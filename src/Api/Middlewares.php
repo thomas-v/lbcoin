@@ -1,8 +1,9 @@
 <?php
 
-use App\Treatment\Manager as TreatmentManager;
+use App\Model\Statistics;
 use App\Conf\Manager as ConfManager;
 use App\Database\Manager as DbManager;
+use App\Treatment\Manager as TreatmentManager;
 
 $pushStatsMiddleware = function ($request, $response, $next) {
 
@@ -20,56 +21,36 @@ $pushStatsMiddleware = function ($request, $response, $next) {
 
     
     $confDb = new ConfManager();
-    $dbh = new DbManager(
+    $databaseManager = new DbManager(
         host : $confDb->getConf('database')["MARIADB_HOST"],
         port : $confDb->getConf('database')["MARIADB_PORT"],
         user : $confDb->getConf('database')["MARIADB_USER"],
         password : $confDb->getConf('database')["MARIADB_PASSWORD"],
         database : $confDb->getConf('database') ["MARIADB_DATABASE"]
     );
+    $dbh = $databaseManager->getDbh();
 
     $api_query = '/'.$treatment->getInt1().'/'.$treatment->getInt2().'/'.$treatment->getLimit().'/'.$treatment->getStr1().'/'.$treatment->getStr2();
 
-    try {
-        $sql = 'SELECT * FROM fizzbuzz.stats WHERE query = :api_query';
-        $sth = $dbh->getDbh()->prepare($sql);
-        $sth->execute(array(':api_query' => $api_query));
-
-        if(count($sth->fetchAll(PDO::FETCH_ASSOC)) === 0){
-            $sql = 'INSERT INTO fizzbuzz.stats (query) VALUES (:api_query)';
-            $sth = $dbh->getDbh()->prepare($sql);
-            $sth->execute(array(':api_query' => $api_query));
-        }
-
-        $sql = 'UPDATE fizzbuzz.stats SET nb = nb + 1 WHERE query = :api_query';
-        $sth = $dbh->getDbh()->prepare($sql);
-        $sth->execute(array(':api_query' => $api_query));
-
-    } catch (PDOException $e){
-        error_log($e);
-    }
+    $model = new Statistics($dbh);
+    $model->pushStats($api_query);
 
     return $response;
 };
 
 $getStatsMiddleware = function ($request, $response, $next) {
     $confDb = new ConfManager();
-    $dbh = new DbManager(
+    $databaseManager = new DbManager(
         host : $confDb->getConf('database')["MARIADB_HOST"],
         port : $confDb->getConf('database')["MARIADB_PORT"],
         user : $confDb->getConf('database')["MARIADB_USER"],
         password : $confDb->getConf('database')["MARIADB_PASSWORD"],
         database : $confDb->getConf('database') ["MARIADB_DATABASE"]
     );
+    $dbh = $databaseManager->getDbh();
 
-    try {
-        $sql = 'SELECT * FROM fizzbuzz.stats ORDER BY nb DESC LIMIT 1';
-        $sth = $dbh->getDbh()->prepare($sql);
-        $sth->execute();
-        $datas = $sth->fetch(PDO::FETCH_ASSOC);
-    } catch (PDOException $e){
-        error_log($e);
-    }
+    $model = new Statistics($dbh);
+    $datas = $model->getStats();
 
     $request = $request->withAttribute('firstQuery', $datas);
 
