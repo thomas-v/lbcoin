@@ -40,7 +40,7 @@ class Manager {
         return $this->strTransformed;
     }
 
-    public function genericFizzbuzz(){
+    public function genericFizzbuzz():string {
         return $this->getStr1();
     }
 }
