@@ -41,6 +41,22 @@ class Manager {
     }
 
     public function genericFizzbuzz():string {
-        return implode('', range(1, $this->getLimit()));
+        $str = '';
+        for($i = 1; $i <= $this->getLimit(); $i++){
+            if ($i % $this->getInt1() == 0 && $i % $this->getInt2() == 0){
+                $str .= strval($this->getStr1().$this->getStr2());
+                continue;
+            }
+            if ($i % $this->getInt1() == 0){
+                $str .= strval($this->getStr1());
+                continue;
+            }
+            if ($i % $this->getInt2() == 0){
+                $str .= strval($this->getStr2());
+                continue;
+            }
+            $str .= strval($i);
+        }
+        return $str;
     }
 }
