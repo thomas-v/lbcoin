@@ -41,6 +41,6 @@ class Manager {
     }
 
     public function genericFizzbuzz():string {
-        return $this->getStr1();
+        return implode('', range(1, $this->getLimit()));
     }
 }
