@@ -4,7 +4,7 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 use App\Treatment\Manager;
 
-$app->get('/generic-fizzbuzz/{int1}/{int2}/{limit}/{str1}/{str2}', function (Request $request, Response $response, array $args) {
+$app->get('/v1/generic-fizzbuzz/{int1}/{int2}/{limit}/{str1}/{str2}', function (Request $request, Response $response, array $args) {
     $treatment = new Manager(
         int1 : $args['int1'],
         int2 : $args['int2'],
