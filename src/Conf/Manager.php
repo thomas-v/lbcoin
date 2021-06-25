@@ -4,7 +4,7 @@ namespace App\Conf;
 
 class Manager {
 
-    const CONF_DIRECTORY = './conf/';
+    const CONF_DIRECTORY = '/prod/fizzbuzz-api/conf/';
 
     private Array $confFiles;
 
