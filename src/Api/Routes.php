@@ -22,12 +22,12 @@ $app->get('/v1/generic-fizzbuzz/{int1}/{int2}/{limit}/{str1}/{str2}', function (
         $statusCode = 500;
         $data = [
             'status' => 'error',
-            'content' => ''
+            'result' => ''
         ];
     } else {
         $data = [
             'status' => 'success',
-            'content' => $str
+            'result' => $str
         ];
     }
     
@@ -37,16 +37,16 @@ $app->get('/v1/generic-fizzbuzz/{int1}/{int2}/{limit}/{str1}/{str2}', function (
 $app->get('/v1/statistics', function (Request $request, Response $response, array $args) {
     $data = [];
     $statusCode = 200;
-    if(!$request->getAttribute('firstQuery')){
+    if(!$request->getAttribute('firstQuery') || !$request->getAttribute('firstQuery')['query'] || !$request->getAttribute('firstQuery')['nb']){
         $statusCode = 500;
         $data = [
             'status' => 'error',
-            'content' => ''
+            'result' => ''
         ];
     } else {
         $data = [
             'status' => 'success',
-            'content' => [
+            'result' => [
                 'maxQuery' => $request->getAttribute('firstQuery')['query'],
                 'count' => $request->getAttribute('firstQuery')['nb']
             ]
