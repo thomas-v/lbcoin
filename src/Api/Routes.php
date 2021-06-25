@@ -5,16 +5,30 @@ use Slim\Http\Response;
 use App\Treatment\Manager;
 
 $app->get('/generic-fizzbuzz/{int1}/{int2}/{limit}/{str1}/{str2}', function (Request $request, Response $response, array $args) {
-    
     $treatment = new Manager(
-        $args['int1'],
-        $args['int2'],
-        $args['limit'],
-        $args['str1'],
-        $args['str2']
+        int1 : $args['int1'],
+        int2 : $args['int2'],
+        str1 : $args['str1'],
+        str2 : $args['str2'],
+        limit : $args['limit']
     );
 
-    $response->getBody()->write("Hello, 'test'");
+    $str = $treatment->genericFizzbuzz();
+    $data = [];
+    $statusCode = 200;
+    if($str == null){
+        $statusCode = 500;
+        $data = [
+            'status' => 'error',
+            'content' => ''
+        ];
+    } else {
+        $data = [
+            'status' => 'success',
+            'content' => $str
+        ];
+    }
 
-    return $response;
+    return $response->withJson($data, $statusCode);
+
 });
