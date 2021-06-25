@@ -2,10 +2,9 @@
 
 namespace Tests\Model;
 
+use App\Database\Manager;
 use App\Model\Statistics;
 use PHPUnit\Framework\TestCase;
-
-use function App\Database\getDbh;
 
 class StatisticsTest extends TestCase {
     /**
@@ -14,15 +13,17 @@ class StatisticsTest extends TestCase {
      */
     public function insertStats(){
 
-        $databaseManager = new \App\Database\Manager(
+        $databaseManager = new Manager(
             database : 'fizzbuzz',
             port : 3306,
             user : 'fizzbuzz',
             password : 'fizzbuzz',
             host : 'db'
         );
+        $dbh = $databaseManager->getDbh();
 
-        new Statistics($databaseManager->getDbh());
+        $model = new Statistics($dbh);
+        $model->pushStats('/3/5/50/fizz/buzz');
     }
 
 }
