@@ -12,7 +12,6 @@ class StatisticsTest extends TestCase {
      * @doesNotPerformAssertions
      */
     public function insertStats(){
-
         $databaseManager = new Manager(
             database : 'fizzbuzz',
             port : 3306,
@@ -26,4 +25,22 @@ class StatisticsTest extends TestCase {
         $model->pushStats('/3/5/50/fizz/buzz');
     }
 
+
+    /**
+     * @test
+     * @doesNotPerformAssertions
+     */
+    public function getStats(){
+        $databaseManager = new Manager(
+            database : 'fizzbuzz',
+            port : 3306,
+            user : 'fizzbuzz',
+            password : 'fizzbuzz',
+            host : 'db'
+        );
+        $dbh = $databaseManager->getDbh();
+
+        $model = new Statistics($dbh);
+        $stats = $model->getStats();
+    }
 }
