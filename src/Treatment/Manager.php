@@ -39,4 +39,8 @@ class Manager {
     public function getStrTransformed():string|null {
         return $this->strTransformed;
     }
+
+    public function genericFizzbuzz(){
+        return $this->getStr1();
+    }
 }
