@@ -4,7 +4,7 @@ use App\Treatment\Manager as TreatmentManager;
 use App\Conf\Manager as ConfManager;
 use App\Database\Manager as DbManager;
 
-$statsMiddleware = function ($request, $response, $next) {
+$pushStatsMiddleware = function ($request, $response, $next) {
 
     $response = $next($request, $response);
 
@@ -48,6 +48,32 @@ $statsMiddleware = function ($request, $response, $next) {
     } catch (PDOException $e){
         error_log($e);
     }
+
+    return $response;
+};
+
+$getStatsMiddleware = function ($request, $response, $next) {
+    $confDb = new ConfManager();
+    $dbh = new DbManager(
+        host : $confDb->getConf('database')["MARIADB_HOST"],
+        port : $confDb->getConf('database')["MARIADB_PORT"],
+        user : $confDb->getConf('database')["MARIADB_USER"],
+        password : $confDb->getConf('database')["MARIADB_PASSWORD"],
+        database : $confDb->getConf('database') ["MARIADB_DATABASE"]
+    );
+
+    try {
+        $sql = 'SELECT * FROM fizzbuzz.stats ORDER BY nb DESC LIMIT 1';
+        $sth = $dbh->getDbh()->prepare($sql);
+        $sth->execute();
+        $datas = $sth->fetch(PDO::FETCH_ASSOC);
+    } catch (PDOException $e){
+        error_log($e);
+    }
+
+    $request = $request->withAttribute('firstQuery', $datas);
+
+    $response = $next($request, $response);
 
     return $response;
 };

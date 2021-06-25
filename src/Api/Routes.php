@@ -32,4 +32,26 @@ $app->get('/v1/generic-fizzbuzz/{int1}/{int2}/{limit}/{str1}/{str2}', function (
     }
     
     return $response->withJson($data, $statusCode);
-})->add($statsMiddleware);
+})->add($pushStatsMiddleware);
+
+$app->get('/v1/statistics', function (Request $request, Response $response, array $args) {
+    $data = [];
+    $statusCode = 200;
+    if(!$request->getAttribute('firstQuery')){
+        $statusCode = 500;
+        $data = [
+            'status' => 'error',
+            'content' => ''
+        ];
+    } else {
+        $data = [
+            'status' => 'success',
+            'content' => [
+                'maxQuery' => $request->getAttribute('firstQuery')['query'],
+                'count' => $request->getAttribute('firstQuery')['nb']
+            ]
+        ];
+    }
+    
+    return $response->withJson($data, $statusCode);
+})->add($getStatsMiddleware);
