@@ -29,4 +29,15 @@ class Statistics {
             error_log($e);
         }
     }
+
+    public function getStats():Array {
+        try {
+            $sql = 'SELECT * FROM fizzbuzz.stats ORDER BY nb DESC LIMIT 1';
+            $sth = $this->dbh->prepare($sql);
+            $sth->execute();
+            return $datas = $sth->fetch(PDO::FETCH_ASSOC);
+        } catch (PDOException $e){
+            error_log($e);
+        }
+    }
 }
