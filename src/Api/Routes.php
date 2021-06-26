@@ -37,7 +37,13 @@ $app->get('/v1/generic-fizzbuzz/{int1}/{int2}/{limit}/{str1}/{str2}', function (
 $app->get('/v1/statistics', function (Request $request, Response $response, array $args) {
     $data = [];
     $statusCode = 200;
-    if(!$request->getAttribute('firstQuery') || !$request->getAttribute('firstQuery')['query'] || !$request->getAttribute('firstQuery')['nb']){
+    if($request->getAttribute('firstQuery') == false){
+        $data = [
+            'status' => 'success',
+            'result' => 'No one query send yet'
+        ];
+    }
+    else if(!$request->getAttribute('firstQuery')['query'] || !$request->getAttribute('firstQuery')['nb']){
         $statusCode = 500;
         $data = [
             'status' => 'error',
