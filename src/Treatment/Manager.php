@@ -42,24 +42,35 @@ class Manager {
         return $this->strTransformed;
     }
 
+    private function addSeparatorAtEnd(string $separator = ''):string{
+        switch($separator){
+            case 'comma':
+                return ',';
+                break;
+            default:
+                return '|';
+        }
+    }
+
     public function genericFizzbuzz():string {
         try {
             $str = '';
             for($i = 1; $i <= $this->getLimit(); $i++){
                 if ($i % $this->getInt1() == 0 && $i % $this->getInt2() == 0){
-                    $str .= strval($this->getStr1().$this->getStr2());
+                    $str .= strval($this->getStr1().$this->getStr2()).$this->addSeparatorAtEnd('comma');
                     continue;
                 }
                 if ($i % $this->getInt1() == 0){
-                    $str .= strval($this->getStr1());
+                    $str .= strval($this->getStr1()).$this->addSeparatorAtEnd('comma');
                     continue;
                 }
                 if ($i % $this->getInt2() == 0){
-                    $str .= strval($this->getStr2());
+                    $str .= strval($this->getStr2()).$this->addSeparatorAtEnd('comma');
                     continue;
                 }
-                $str .= strval($i);
+                $str .= strval($i).$this->addSeparatorAtEnd('comma');
             }
+            $str = substr($str, 0, -1);
             return $str;
         } catch (Exception $e){
             error_log($e);
