@@ -30,14 +30,16 @@ class Statistics {
         }
     }
 
-    public function getStats():Array {
+    public function getStats():Array|bool|null {
         try {
             $sql = 'SELECT * FROM fizzbuzz.stats ORDER BY nb DESC LIMIT 1';
             $sth = $this->dbh->prepare($sql);
             $sth->execute();
-            return $datas = $sth->fetch(PDO::FETCH_ASSOC);
+            $datas = $sth->fetch(PDO::FETCH_ASSOC);
+            return $datas;
         } catch (PDOException $e){
             error_log($e);
+            return null;
         }
     }
 }
