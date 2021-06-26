@@ -1,0 +1,9 @@
+{
+    "database" : {
+        "MARIADB_DATABASE" : "fizzbuzz",
+        "MARIADB_USER" : "fizzbuzz",
+        "MARIADB_PASSWORD" : "fizzbuzz",
+        "MARIADB_PORT" : 3306,
+        "MARIADB_HOST" : "db"
+    }
+}
